@@ -1,0 +1,11 @@
+* {
+    -fx-font-family: Verdana;
+}
+
+.background {
+    -fx-background-color: #525d64;
+}
+
+.justText{
+    -fx-fill: #cecece;
+}

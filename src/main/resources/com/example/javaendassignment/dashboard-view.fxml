@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../css/dashboard.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaendassignment.controller.DashboardController">
+   <Pane layoutY="238.0">
+               <Label fx:id="welcomeLabel" prefWidth="700.0" textFill="#1e1e1e">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="roleLabel" layoutY="53.0" prefWidth="700.0" style="-fx-text-alignment: center;" textFill="#1e1e1e">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="dateTimeLabel" layoutY="100.0" prefWidth="700.0" style="-fx-text-alignment: center; -fx-alignment: center;" textFill="#1e1e1e">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+   </Pane>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

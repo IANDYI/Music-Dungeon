@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="layout" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaendassignment.controller.MainController">
+    <left>
+        <VBox prefHeight="600.0" prefWidth="200.0" styleClass="sidePanel" stylesheets="@../../../css/sidePanel.css" BorderPane.alignment="CENTER">
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                        <ImageView fitHeight="124.0" fitWidth="190.0" layoutX="5.0" layoutY="38.0">
+                                <Image url="@../../../img/music-dungeon-icon.png" />
+                        </ImageView>
+                </Pane>
+                <Button mnemonicParsing="false" onAction="#onDashBoardClick" prefHeight="40.0" prefWidth="200.0" text="DASHBOARD">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnCreateOrder" mnemonicParsing="false" onAction="#onCreateOrderClick" prefHeight="40.0" prefWidth="200.0" text="CREATE ORDER">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnProductInventory" mnemonicParsing="false" onAction="#onProductInventoryClick" prefHeight="40.0" prefWidth="200.0" text="PRODUCT INVENTORY">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onOrderHistoryClick" prefHeight="40.0" prefWidth="200.0" text="ORDER HISTORY">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="40.0" prefWidth="200.0" text="LOGOUT">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </left>
+    <center>
+        <VBox BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

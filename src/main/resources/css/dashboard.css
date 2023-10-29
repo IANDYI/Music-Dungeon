@@ -1,0 +1,13 @@
+* {
+    -fx-font-family: Verdana;
+}
+
+.background {
+    -fx-background-color: #525d64;
+}
+.label {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #ffffff;
+}
+

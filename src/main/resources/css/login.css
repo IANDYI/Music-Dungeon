@@ -1,0 +1,34 @@
+* {
+    -fx-font-family: Verdana;
+}
+
+.login-background {
+    -fx-background-color: linear-gradient(to right, #1e1e1e, #525d64);
+}
+.label-login {
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-text-fill: #ffffff;
+}
+
+.label-error {
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-text-fill: #d47e6c;
+}
+
+.button {
+    -fx-background-color: #945968;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #4f3c4c;
+    -fx-cursor: hand;
+}
+
+.text-field {
+    -fx-background-color: linear-gradient(to right, #393b40, #525d64);
+    -fx-text-fill: #ffffff;
+}
