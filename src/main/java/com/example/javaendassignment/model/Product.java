@@ -17,6 +17,11 @@ public class Product implements Serializable {
     this.price = price;
     this.stock = stock;
   }
+  public Product(int quantity, String name, String category,double totalPrice ){
+    this(0,name,category,0,null);
+    this.quantity = quantity;
+    this.totalPrice = totalPrice;
+  }
   public String getName() {
     return name;
   }

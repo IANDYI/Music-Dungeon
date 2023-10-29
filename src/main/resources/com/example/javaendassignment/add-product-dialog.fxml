@@ -4,32 +4,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<DialogPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaendassignment.controller.AddProductController">
-    <content>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0">
-            <TableView fx:id="tableProducts" layoutY="43.0" prefHeight="246.0" prefWidth="600.0">
-                <columns>
-                    <TableColumn fx:id="stockColumn" minWidth="30.0" prefWidth="50.0" text="Stock" />
-                    <TableColumn fx:id="nameColumn" minWidth="30.0" prefWidth="100.0" text="Name" />
-                    <TableColumn fx:id="categoryColumn" minWidth="30.0" prefWidth="100.0" text="Category" />
-                    <TableColumn fx:id="priceColumn" minWidth="30.0" prefWidth="100.0" text="Price" />
-                    <TableColumn fx:id="descriptionColumn" minWidth="30.0" prefWidth="250.0" text="Description" />
-                </columns>
-            </TableView>
-            <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item">
-                <font>
-                    <Font size="24.0" />
-                </font>
-            </Text>
-            <Text layoutX="14.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Text>
-            <Spinner fx:id="inputQuantity" layoutX="94.0" layoutY="304.0" prefHeight="26.0" prefWidth="100.0" />
-            <Label fx:id="labelMessage" layoutX="204.0" layoutY="308.0" prefHeight="17.0" prefWidth="386.0" />
-        </AnchorPane>
-    </content>
-    <ButtonType fx:constant="CANCEL" />
-    <ButtonType fx:constant="OK" />
-</DialogPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaendassignment.controller.AddProductController">
+      <TableView fx:id="tableProducts" layoutY="43.0" prefHeight="246.0" prefWidth="600.0">
+         <columns>
+            <TableColumn fx:id="stockColumn" minWidth="30.0" prefWidth="50.0" text="Stock" />
+            <TableColumn fx:id="nameColumn" minWidth="30.0" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="categoryColumn" minWidth="30.0" prefWidth="100.0" text="Category" />
+            <TableColumn fx:id="priceColumn" minWidth="30.0" prefWidth="100.0" text="Price" />
+            <TableColumn fx:id="descriptionColumn" minWidth="30.0" prefWidth="250.0" text="Description" />
+         </columns>
+      </TableView>
+      <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Spinner fx:id="inputQuantity" layoutX="94.0" layoutY="363.0" prefHeight="26.0" prefWidth="100.0" />
+      <Label fx:id="labelMessage" alignment="CENTER" layoutX="10.0" layoutY="308.0" prefHeight="17.0" prefWidth="582.0" />
+      <Button layoutX="468.0" layoutY="363.0" mnemonicParsing="false" onAction="#onOkClick" text="Ok" />
+      <Button layoutX="530.0" layoutY="363.0" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" />
+</AnchorPane>

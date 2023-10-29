@@ -30,6 +30,7 @@ public class DashboardController implements Initializable, Controller {
   private void displayUserInfo() {
     welcomeLabel.setText("Welcome, " + user.getName() + " !");
     roleLabel.setText("Your role is: " + user.getRole().toString() + ".");
+    displayTime();
   }
 
   private void displayTime() {
