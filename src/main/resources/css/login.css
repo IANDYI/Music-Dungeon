@@ -31,4 +31,5 @@
 .text-field {
     -fx-background-color: linear-gradient(to right, #393b40, #525d64);
     -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #ffffff;
 }

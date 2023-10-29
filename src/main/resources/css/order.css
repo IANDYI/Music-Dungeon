@@ -9,3 +9,66 @@
 .justText{
     -fx-fill: #cecece;
 }
+
+.messageLabel {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #d47e6c;
+}
+.text-field {
+    -fx-background-color: #393b40;
+    -fx-text-fill: #ffffff;
+}
+
+.button {
+    -fx-background-color: #6b8187;
+    -fx-text-fill: #ffffff;
+    -fx-background-insets: 0;
+}
+
+.button:hover{
+    -fx-background-color: #393b40;
+    -fx-text-fill: #cecece;
+    -fx-cursor: hand;
+}
+
+/*table*/
+
+.table-view{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #393b40;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0;
+}

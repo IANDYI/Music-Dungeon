@@ -13,12 +13,18 @@
     -fx-border-color: #cecece;
     -fx-border-width: 0 0 2px 0;
     -fx-background-radius: 0;
+    -fx-background-insets: 0;
 }
 .button:hover {
     -fx-background-color: #525d64;
     -fx-text-fill: #ffffff;
     -fx-border-color: #ffffff;
+    -fx-font-size: 14px;
     -fx-cursor: hand;
+}
+
+.button:focused {
+    -fx-font-size: 14px;
 }
 
 /* Labels */

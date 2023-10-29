@@ -3,17 +3,24 @@ package com.example.javaendassignment.controller;
 import com.example.javaendassignment.MusicApplication;
 import com.example.javaendassignment.database.Database;
 import com.example.javaendassignment.model.User;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginViewController {
 
@@ -52,11 +59,10 @@ public class LoginViewController {
 
   private void createStage(User authenticatedUser) throws IOException {
     FXMLLoader mainLoader = new FXMLLoader(MusicApplication.class.getResource("main-view.fxml"));
-    mainLoader.setControllerFactory(controllerClass -> new MainController(authenticatedUser));
     Stage mainStage = new Stage();
+    mainLoader.setControllerFactory(controllerClass -> new MainController(authenticatedUser, mainStage));
     mainStage.setScene(new Scene(mainLoader.load()));
     mainStage.setResizable(false);
-    mainStage.setTitle("Your music dungeon");
     mainStage.show();
   }
 

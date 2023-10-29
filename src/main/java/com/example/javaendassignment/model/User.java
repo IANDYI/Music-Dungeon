@@ -8,10 +8,10 @@ public class User implements Serializable {
   private final String email;
   private final String password;
   private final String username;
-  private final int phoneNumber;
+  private final String phoneNumber;
   private final Role role;
 
-  public User(String firstname, String lastname, String email, String username, String password, int phoneNumber, Role role) {
+  public User(String firstname, String lastname, String email, String username, String password, String phoneNumber, Role role) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
@@ -37,7 +37,7 @@ public class User implements Serializable {
     return username;
   }
 
-  public int getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 

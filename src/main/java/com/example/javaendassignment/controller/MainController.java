@@ -4,12 +4,10 @@ import com.example.javaendassignment.MusicApplication;
 import com.example.javaendassignment.database.Database;
 import com.example.javaendassignment.model.Role;
 import com.example.javaendassignment.model.User;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -26,33 +24,39 @@ public class MainController implements Initializable {
   private Button btnCreateOrder;
   @FXML
   private BorderPane layout;
+  private Database database;
+  private final User user;
+  private final Stage stage;
   @FXML
   private void onDashBoardClick() {
     loadScene("dashboard-view.fxml", user);
+    stage.setTitle("Dashboard");
   }
   @FXML
   private void onCreateOrderClick() {
     loadScene("create-order-view.fxml", database);
+    stage.setTitle("Create Order");
   }
   @FXML
   private void onProductInventoryClick() {
+    stage.setTitle("Product Inventory");
     //
   }
   @FXML
   private void onOrderHistoryClick() {
+    stage.setTitle("Order History");
     //
   }
+
   @FXML
-  private void onLogoutClick(ActionEvent event) {
-    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-    stage.close();
+  private void onLogoutClick() {
+    Platform.exit();
   }
 
-  Database database;
-  private final User user;
 
-  public MainController(User user) {
+  public MainController(User user, Stage stage) {
     this.user = user;
+    this.stage = stage;
   }
   private void limitAccess() {
     if(user.getRole() == Role.MANAGER){
@@ -63,32 +67,23 @@ public class MainController implements Initializable {
     }
   }
   private void loadScene(String fxmlPath, Object data) {
+    layout.setCenter(null);
     try {
       FXMLLoader loader = new FXMLLoader(MusicApplication.class.getResource(fxmlPath));
 
       loader.setControllerFactory(controllerClass -> {
         try {
-          Object controller = controllerClass.getConstructor().newInstance();
-          checkController(controller, data);
+          Controller controller = (Controller) controllerClass.getConstructor().newInstance();
+          controller.setData(data);
           return controller;
 
         } catch (Exception e) {
           throw new RuntimeException(e);
         }
       });
-
-      Parent root = loader.load();
-      layout.setCenter(root);
+      layout.setCenter(loader.load());
     } catch (IOException e) {
       throw new RuntimeException(e);
-    }
-  }
-
-  private void checkController(Object controller, Object data) {
-    if(controller instanceof DashboardController) {
-      ((DashboardController) controller).setData((User) data);
-    } else if (controller instanceof CreateOrderController) {
-      ((CreateOrderController) controller).setData((Database) data);
     }
   }
 
@@ -96,6 +91,6 @@ public class MainController implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     database = new Database();
     limitAccess();
-    loadScene("dashboard-view.fxml", user);
+    onDashBoardClick();
   }
 }
