@@ -1,10 +1,10 @@
 # Music-Dungeon
 
-## Manager credentials
-login: Kaldor
+Manager credentials <br>
+login: Kaldor <br>
 password: titansword
 
 
-## Sales credentials
-login: Malkaan
+Sales credentials <br>
+login: Malkaan <br>
 password: harrowhand
