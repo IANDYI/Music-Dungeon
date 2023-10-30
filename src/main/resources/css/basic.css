@@ -31,3 +31,7 @@
     -fx-text-fill: #cecece;
     -fx-cursor: hand;
 }
+
+.table-cell {
+    -fx-alignment: center;
+}

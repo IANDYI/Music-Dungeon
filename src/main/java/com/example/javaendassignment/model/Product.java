@@ -10,6 +10,7 @@ public class Product implements Serializable {
   private double price;
   private int stock;
   private double totalPrice;
+
   public Product(int stock, String name, String  category, double price, String description){
     this.name = name;
     this.category = category;
@@ -17,11 +18,13 @@ public class Product implements Serializable {
     this.price = price;
     this.stock = stock;
   }
-  public Product(int quantity, String name, String category,double totalPrice ){
+
+  public Product(int quantity, String name, String category, double totalPrice){
     this(0,name,category,0,null);
     this.quantity = quantity;
     this.totalPrice = totalPrice;
   }
+
   public String getName() {
     return name;
   }
@@ -64,9 +67,6 @@ public class Product implements Serializable {
   public double getTotalPrice() {
     return totalPrice*quantity;
   }
-  public void setTotalPrice(double totalPrice) {
-    this.totalPrice = totalPrice;
-  }
 
   public int getQuantity() {
     return quantity;
@@ -75,6 +75,7 @@ public class Product implements Serializable {
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
+
   public void decreaseStock(int quantity){
     if (stock> quantity){
       stock -= quantity;

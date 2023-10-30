@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginViewController {
+public class LoginController {
 
   @FXML
   private Label errorMessage;

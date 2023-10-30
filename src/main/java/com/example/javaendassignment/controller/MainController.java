@@ -44,6 +44,7 @@ public class MainController implements Initializable {
   }
   @FXML
   private void onOrderHistoryClick() {
+    loadScene("order-history-view.fxml", database);
     stage.setTitle("Order History");
   }
 
@@ -59,7 +60,7 @@ public class MainController implements Initializable {
   }
   private void limitAccess() {
     if(user.getRole() == Role.MANAGER){
-      btnCreateOrder.setDisable(true);
+      btnCreateOrder.setDisable(false);
     }
     else {
       btnProductInventory.setDisable(true);

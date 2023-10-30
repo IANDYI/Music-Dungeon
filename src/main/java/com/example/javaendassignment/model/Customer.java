@@ -15,6 +15,9 @@ public class Customer implements Serializable {
     this.phoneNumber = phoneNumber;
   }
 
+  public String getName() {
+    return (firstname + " " + lastname);
+  }
   @Override
   public String toString() {
     return (firstname + " " + lastname + " " + email + " " + phoneNumber);

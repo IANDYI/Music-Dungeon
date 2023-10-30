@@ -2,6 +2,8 @@ package com.example.javaendassignment.controller;
 
 import com.example.javaendassignment.database.Database;
 import com.example.javaendassignment.model.Product;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -61,10 +64,7 @@ public class AddProductController {
     inputQuantity.setValueFactory(valueFactory);
     currentQuantity = inputQuantity.getValue();
     labelMessage.setText(Integer.toString(currentQuantity));
-    inputQuantity.valueProperty().addListener((observableValue, integer, t1) -> {
-      currentQuantity = inputQuantity.getValue();
-      labelMessage.setText(Integer.toString(currentQuantity));
-    });
+    inputQuantity.valueProperty().addListener((observableValue, integer, t1) -> currentQuantity = inputQuantity.getValue());
   }
 
 
@@ -73,7 +73,7 @@ public class AddProductController {
     try{
       Product selection = tableProducts.getSelectionModel().getSelectedItem();
       if(selection == null){
-        labelMessage.setText("Please Choose a Product");
+        displayMessage("Please Choose a Product");
         return;
       }
       if(currentQuantity <= selection.getStock()){
@@ -84,11 +84,10 @@ public class AddProductController {
         onCancelClick(event);
       }
       else {
-        labelMessage.setText("Not Enough Stock");
+        displayMessage("Not Enough Stock");
       }
-    }catch (Exception ex){
-      labelMessage.setText("Error Occured While Adding Product");
-      ex.printStackTrace();
+    }catch (Exception e){
+      displayMessage("Error Occured While Adding Product");
     }
   }
 
@@ -96,5 +95,13 @@ public class AddProductController {
   private void onCancelClick(ActionEvent actionEvent) {
     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     stage.close();
+  }
+
+  private void displayMessage(String message) {
+    labelMessage.setText(message);
+    Timeline timeline = new Timeline(
+            new KeyFrame(Duration.seconds(2), event -> labelMessage.setText(""))
+    );
+    timeline.play();
   }
 }

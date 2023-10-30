@@ -1,6 +1,6 @@
 package com.example.javaendassignment;
 
-import com.example.javaendassignment.controller.LoginViewController;
+import com.example.javaendassignment.controller.LoginController;
 import com.example.javaendassignment.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class MusicApplication extends Application {
     stage.setScene(new Scene(fxmlLoader.load()));
     Database database = new Database();
     stage.setResizable(false);
-    LoginViewController controller = fxmlLoader.getController();
+    LoginController controller = fxmlLoader.getController();
     controller.setDatabase(database);
     stage.setTitle("Login");
     stage.show();

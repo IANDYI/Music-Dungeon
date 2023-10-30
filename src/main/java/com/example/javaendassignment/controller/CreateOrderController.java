@@ -5,6 +5,8 @@ import com.example.javaendassignment.database.Database;
 import com.example.javaendassignment.model.Customer;
 import com.example.javaendassignment.model.Order;
 import com.example.javaendassignment.model.Product;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -72,7 +75,7 @@ public class CreateOrderController implements Initializable, Controller {
         database.increaseProductStock(selectedProduct.getName(), selectedProduct.getQuantity());
       }
     } catch (Exception e){
-      labelMessage.setText("Error Occurred While Deleting the Product, Please Try Again");
+      displayMessage("Error Occurred While Deleting the Product, Please Try Again");
     }
   }
   @FXML
@@ -82,10 +85,10 @@ public class CreateOrderController implements Initializable, Controller {
     String phoneNumber = inputPhoneNumber.getText();
     String firstName = inputFirstName.getText();
     if (firstName.isEmpty() || lastName.isEmpty() || emailAddress.isEmpty() || phoneNumber.isEmpty()){
-      labelMessage.setText("Please fill all fields");
+      displayMessage("Please fill all fields");
     }
     else if (observableProducts.isEmpty()) {
-      labelMessage.setText("Your didn't choose any products");
+      displayMessage("Your didn't choose any products");
     }
     else {
       try{
@@ -97,8 +100,9 @@ public class CreateOrderController implements Initializable, Controller {
 
         database.addOrder(order);
         cleanPage();
+        displayMessage("Your order was placed");
       }catch (Exception ex){
-        labelMessage.setText("Error Occurred While Creating Order");
+        displayMessage("Error Occurred While Creating Order");
       }
     }
   }
@@ -125,5 +129,13 @@ public class CreateOrderController implements Initializable, Controller {
     inputPhoneNumber.clear();
     tableProducts.setItems(FXCollections.observableArrayList());
     labelMessage.setText("");
+  }
+
+  private void displayMessage(String message) {
+    labelMessage.setText(message);
+    Timeline timeline = new Timeline(
+            new KeyFrame(Duration.seconds(2), event -> labelMessage.setText(""))
+    );
+    timeline.play();
   }
 }

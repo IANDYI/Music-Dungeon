@@ -133,7 +133,6 @@ public class ProductInventoryController implements Initializable, Controller {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     observableProducts = FXCollections.observableArrayList(database.getProducts());
-    tableInventory.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     tableInventory.setItems(observableProducts);
 
     columnStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
