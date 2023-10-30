@@ -63,7 +63,6 @@ public class AddProductController {
     valueFactory.setValue(1);
     inputQuantity.setValueFactory(valueFactory);
     currentQuantity = inputQuantity.getValue();
-    labelMessage.setText(Integer.toString(currentQuantity));
     inputQuantity.valueProperty().addListener((observableValue, integer, t1) -> currentQuantity = inputQuantity.getValue());
   }
 

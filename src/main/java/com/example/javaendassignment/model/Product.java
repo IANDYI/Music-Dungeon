@@ -3,6 +3,7 @@ package com.example.javaendassignment.model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+
   private String name;
   private String category;
   private String description;
@@ -70,10 +71,6 @@ public class Product implements Serializable {
 
   public int getQuantity() {
     return quantity;
-  }
-
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
   }
 
   public void decreaseStock(int quantity){

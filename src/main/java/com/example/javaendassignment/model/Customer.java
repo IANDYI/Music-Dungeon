@@ -18,8 +18,4 @@ public class Customer implements Serializable {
   public String getName() {
     return (firstname + " " + lastname);
   }
-  @Override
-  public String toString() {
-    return (firstname + " " + lastname + " " + email + " " + phoneNumber);
-  }
 }

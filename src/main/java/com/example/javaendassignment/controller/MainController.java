@@ -24,7 +24,7 @@ public class MainController implements Initializable {
   private Button btnCreateOrder;
   @FXML
   private BorderPane layout;
-  private Database database;
+  private final Database database;
   private final User user;
   private final Stage stage;
   @FXML
@@ -49,12 +49,14 @@ public class MainController implements Initializable {
   }
 
   @FXML
-  private void onLogoutClick() {
+  private void onLogoutClick() throws IOException {
+    database.saveDatabase(database);
     Platform.exit();
   }
 
 
-  public MainController(User user, Stage stage) {
+  public MainController(Database database, User user, Stage stage) {
+    this.database = database;
     this.user = user;
     this.stage = stage;
   }
@@ -89,7 +91,6 @@ public class MainController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    database = new Database();
     limitAccess();
     onDashBoardClick();
   }

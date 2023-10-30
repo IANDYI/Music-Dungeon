@@ -53,7 +53,7 @@ public class LoginController {
   private void createStage(User authenticatedUser) throws IOException {
     FXMLLoader mainLoader = new FXMLLoader(MusicApplication.class.getResource("main-view.fxml"));
     Stage mainStage = new Stage();
-    mainLoader.setControllerFactory(controllerClass -> new MainController(authenticatedUser, mainStage));
+    mainLoader.setControllerFactory(controllerClass -> new MainController(database, authenticatedUser, mainStage));
     mainStage.setScene(new Scene(mainLoader.load()));
     mainStage.setResizable(false);
     mainStage.show();

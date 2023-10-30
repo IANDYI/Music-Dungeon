@@ -1,17 +1,20 @@
 package com.example.javaendassignment.database;
 
-import com.example.javaendassignment.model.Customer;
 import com.example.javaendassignment.model.Order;
 import com.example.javaendassignment.model.Product;
 import com.example.javaendassignment.model.Role;
 import com.example.javaendassignment.model.User;
 
-import java.time.LocalDateTime;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Database {
+public class Database implements Serializable {
   private final ArrayList<User> users;
   private final ArrayList<Product> products;
   private final ArrayList<Order> orders;
@@ -21,11 +24,17 @@ public class Database {
     products = new ArrayList<>();
     orders = new ArrayList<>();
 
-    products.add(new Product(10, "My guitar", "Instruments", 150, "Best guitar ever"));
-    products.add(new Product(23, "My violin", "Instruments", 230, "Better than a guitar ever"));
-
     users.add(new User("Kaldor", "Draigo", "a", "1", Role.MANAGER));
     users.add(new User("Malkaan", "Feirros", "Malkaan", "harrowhand", Role.SALES));
+  }
+
+  public void saveDatabase(Database database) throws IOException {
+    FileOutputStream fileOutputStream = new FileOutputStream("database.ser");
+    ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+    out.writeObject(database);
+    out.close();
+    fileOutputStream.close();
+    System.out.printf("database is saved");
   }
 
   public User authenticateUser(String username, String password) {
@@ -37,10 +46,10 @@ public class Database {
     return null; // Authentication failed
   }
 
-  public ArrayList<Product> getProducts() {
+  public List<Product> getProducts() {
     return products;
   }
-  public ArrayList<Order> getOrders() {
+  public List<Order> getOrders() {
     return orders;
   }
 
