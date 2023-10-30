@@ -2,12 +2,18 @@ package com.example.javaendassignment.controller;
 
 import com.example.javaendassignment.MusicApplication;
 import com.example.javaendassignment.database.Database;
+import com.example.javaendassignment.exception.AccountLockedException;
 import com.example.javaendassignment.model.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -24,6 +30,7 @@ public class LoginController {
   @FXML
   private PasswordField passwordField;
   private Database database;
+  private int unsuccessfulAttemptCount = 0;
 
   public void setDatabase(Database database) {
     this.database = database;
@@ -37,15 +44,21 @@ public class LoginController {
     //Note: there is no "Invalid username" message, because of the security reasons.
     if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
       showError("Please fill both fields");
-    }
-    else {
-      User user = database.authenticateUser(enteredUsername, enteredPassword);
-      if (user != null) {
+    } else {
+      try {
+        // Attempt to authenticate the user
+        User user = database.authenticateUser(enteredUsername, enteredPassword);
+
+        if (user != null) {
           createStage(user);
           closeWindow(event);
-      }
-      else {
-        showError("Incorrect combination");
+        } else {
+          // Authentication failed, increment the unsuccessful attempt count
+          handleUnsuccessfulAttempt();
+        }
+      } catch (AccountLockedException e) {
+        // Handle the AccountLockedException by displaying an alert dialog
+        showAccountLockAlert(e.getMessage());
       }
     }
   }
@@ -66,5 +79,32 @@ public class LoginController {
 
   private void showError(String error) {
     errorMessage.setText(error);
+  }
+
+  private void handleUnsuccessfulAttempt() throws AccountLockedException {
+    unsuccessfulAttemptCount++;
+
+    int maxAttempts = 4;
+    if (unsuccessfulAttemptCount >= maxAttempts) {
+      throw new AccountLockedException("Your account has been locked");
+    }
+    else {
+      showError("Incorrect combination. Attempt " + unsuccessfulAttemptCount + " of " + maxAttempts);
+    }
+  }
+
+  private void showAccountLockAlert(String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Exception");
+    alert.setHeaderText("Account Locked");
+    alert.setContentText(message);
+
+    ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+    alert.getButtonTypes().setAll(okButton);
+
+    Button okBtn = (Button) alert.getDialogPane().lookupButton(okButton);
+    okBtn.setOnAction(e -> Platform.exit());
+
+    alert.showAndWait();
   }
 }

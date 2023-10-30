@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaendassignment.controller.AddProductController">
-      <TableView fx:id="tableProducts" layoutY="43.0" prefHeight="246.0" prefWidth="600.0">
+      <TableView fx:id="tableProducts" layoutY="40.0" prefHeight="300.0" prefWidth="600.0">
          <columns>
             <TableColumn fx:id="stockColumn" minWidth="30.0" prefWidth="50.0" text="Stock" />
             <TableColumn fx:id="nameColumn" minWidth="30.0" prefWidth="100.0" text="Name" />
@@ -17,7 +17,7 @@
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
       </TableView>
-      <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item">
+      <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item">
          <font>
             <Font size="24.0" />
          </font>
@@ -31,4 +31,5 @@
       <Label fx:id="labelMessage" alignment="CENTER" layoutX="10.0" layoutY="308.0" prefHeight="17.0" prefWidth="582.0" />
       <Button layoutX="468.0" layoutY="363.0" mnemonicParsing="false" onAction="#onOkClick" text="Ok" />
       <Button layoutX="530.0" layoutY="363.0" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" />
+   <TextField fx:id="searchField" layoutX="220.0" layoutY="7.0" promptText="Search" />
 </AnchorPane>

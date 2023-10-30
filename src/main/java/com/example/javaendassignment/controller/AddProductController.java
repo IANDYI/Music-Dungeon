@@ -14,6 +14,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -37,6 +38,10 @@ public class AddProductController {
   private Spinner<Integer> inputQuantity;
   @FXML
   private Label labelMessage;
+  @FXML
+  private TextField searchField;
+  private List<Product> products;
+  private ObservableList<Product> observableProducts;
   private int currentQuantity;
   private Database database;
   private CreateOrderController orderController;
@@ -45,10 +50,11 @@ public class AddProductController {
     this.orderController = orderController;
     setTableProducts();
     initializeSpinner();
+    initializeSearchField();
   }
   private void setTableProducts() {
-    List<Product> products = database.getProducts();
-    ObservableList<Product> observableProducts = FXCollections.observableArrayList(products);
+    products = database.getProducts();
+    observableProducts = FXCollections.observableArrayList(products);
     tableProducts.setItems(observableProducts);
 
     stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -102,5 +108,31 @@ public class AddProductController {
             new KeyFrame(Duration.seconds(2), event -> labelMessage.setText(""))
     );
     timeline.play();
+  }
+
+  private void filterProductList(String filter) {
+    ObservableList<Product> filteredList = FXCollections.observableArrayList();
+
+    // Filter the products based on the user input
+    for (Product product : products) {
+      if (product.getName().toLowerCase().contains(filter.toLowerCase())) {
+        filteredList.add(product);
+      }
+    }
+
+    // Update the product list with the filtered list
+    tableProducts.setItems(filteredList);
+  }
+
+  private void initializeSearchField() {
+    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (newValue.length() >= 3) {
+        // Filter the list based on the user input
+        filterProductList(newValue);
+      } else {
+        // Show the entire list if the input is less than 3 characters
+        tableProducts.setItems(observableProducts);
+      }
+    });
   }
 }
