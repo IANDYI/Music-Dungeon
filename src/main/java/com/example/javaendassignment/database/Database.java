@@ -19,7 +19,9 @@ public class Database {
     products = new ArrayList<>();
     orders = new ArrayList<>();
 
-    products.add(new Product(10, "banana", "fruits", 1.15, "This bananas are the best. Just trust me, old good monkey..."));
+    products.add(new Product(10, "My guitar", "Instruments", 150, "Best guitar ever"));
+    products.add(new Product(23, "My violin", "Instruments", 230, "Better than a guitar ever"));
+
 
     users.add(new User("Kaldor", "Draigo", "a", "1", Role.MANAGER));
     users.add(new User("Malkaan", "Feirros", "Malkaan", "harrowhand", Role.SALES));
@@ -61,5 +63,11 @@ public class Database {
 
   public void addOrder(Order order){
     orders.add(order);
+  }
+  public void addProduct(Product product) {
+    products.add(product);
+  }
+  public void removeProduct(Product product) {
+    products.remove(product);
   }
 }

@@ -39,13 +39,12 @@ public class MainController implements Initializable {
   }
   @FXML
   private void onProductInventoryClick() {
+    loadScene("product-inventory.fxml", database);
     stage.setTitle("Product Inventory");
-    //
   }
   @FXML
   private void onOrderHistoryClick() {
     stage.setTitle("Order History");
-    //
   }
 
   @FXML
@@ -60,7 +59,7 @@ public class MainController implements Initializable {
   }
   private void limitAccess() {
     if(user.getRole() == Role.MANAGER){
-      btnCreateOrder.setDisable(false);
+      btnCreateOrder.setDisable(true);
     }
     else {
       btnProductInventory.setDisable(true);
