@@ -193,8 +193,6 @@ public class ProductInventoryController implements Initializable, Controller {
     try (BufferedReader br = new BufferedReader(new FileReader(file))) {
       br.readLine();
 
-      ObservableList<Product> products = FXCollections.observableArrayList();
-
       String line;
       while ((line = br.readLine()) != null) {
         String[] parts = line.split(";");
@@ -206,10 +204,10 @@ public class ProductInventoryController implements Initializable, Controller {
           int stock = Integer.parseInt(parts[4].trim());
 
           Product product = new Product(stock, name, category, price, description);
-          products.add(product);
+          database.addProduct(product);
+          observableProducts.add(product);
         }
       }
-      tableInventory.setItems(products);
     } catch (IOException | NumberFormatException e) {
       displayMessage("Error importing products from CSV file.");
     }
