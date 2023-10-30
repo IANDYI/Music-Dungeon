@@ -8,12 +8,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class MusicApplication extends Application {
   @Override
-  public void start(Stage stage) throws IOException, ClassNotFoundException {
+  public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(MusicApplication.class.getResource("login-view.fxml"));
     stage.setScene(new Scene(fxmlLoader.load()));
     Database database;
@@ -29,13 +30,23 @@ public class MusicApplication extends Application {
     stage.show();
   }
 
-  private Database readDatabase() throws IOException, ClassNotFoundException {
-    FileInputStream fileInputStream = new FileInputStream("database.ser");
-    ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-    Database database = (Database) inputStream.readObject();
-    inputStream.close();
-    fileInputStream.close();
-    return database;
+  private Database readDatabase() {
+    try {
+      FileInputStream fileInputStream = new FileInputStream("database.ser");
+      ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+      Database database = (Database) inputStream.readObject();
+      inputStream.close();
+      fileInputStream.close();
+      return database;
+    }
+    catch (FileNotFoundException e) {
+      System.out.println("File 'database.ser' not found.");
+      return null;
+    }
+    catch (IOException | ClassNotFoundException e) {
+      System.out.println("Couldn't load file.");
+      return null;
+    }
   }
 
   public static void main(String[] args) {

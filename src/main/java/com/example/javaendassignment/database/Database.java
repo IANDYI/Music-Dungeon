@@ -24,8 +24,8 @@ public class Database implements Serializable {
     products = new ArrayList<>();
     orders = new ArrayList<>();
 
-    users.add(new User("Kaldor", "Draigo", "a", "1", Role.MANAGER));
-    users.add(new User("Malkaan", "Feirros", "Malkaan", "harrowhand", Role.SALES));
+    users.add(new User("Kaldor", "Draigo", "kaldor", "titansword", Role.MANAGER));
+    users.add(new User("Malkaan", "Feirros", "malkaan", "harrowhand", Role.SALES));
   }
 
   public void saveDatabase(Database database) throws IOException {
