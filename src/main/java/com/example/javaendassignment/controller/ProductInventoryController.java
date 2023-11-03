@@ -133,6 +133,8 @@ public class ProductInventoryController implements Initializable, Controller {
         }
         observableProducts.removeAll(selectedProducts);
         displayMessage("Product/s Successfully Deleted!");
+        clearTextFields();
+        tableInventory.getSelectionModel().clearSelection();
       }catch (Exception e){
         displayMessage("Product/s Deletion Failed!");
       }
@@ -172,6 +174,7 @@ public class ProductInventoryController implements Initializable, Controller {
       inputDescription.setText(String.valueOf(product.getDescription()));
     }
     else {
+      clearTextFields();
       displayMessage("There is no products");
     }
   }
